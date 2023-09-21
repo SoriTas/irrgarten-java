@@ -17,7 +17,7 @@ public class Irrgarten {
         // TODO code application logic here
         System.out.println("Primera Salida");
         System.out.println("hola");
-        System.out.println("Esta es la rama de desarrollo de manuel");
+        System.out.println("Esta es la rama maestra");
     }
     
 }
