@@ -16,7 +16,7 @@ public class Irrgarten {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Primera Salida");
-        
+        System.out.println("hola");
     }
     
 }
