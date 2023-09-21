@@ -17,7 +17,7 @@ public class Irrgarten {
         // TODO code application logic here
         System.out.println("Primera Salida");
         System.out.println("hola");
-        System.out.println("Este es el cambio que he añadido");
+        System.out.println("Ahora he cambiado a este");
     }
     
 }
