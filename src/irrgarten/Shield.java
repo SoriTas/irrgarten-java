@@ -9,7 +9,7 @@ package irrgarten;
  * @author manuel
  */
 public class Shield {
-    private final float protection;
+    private float protection;
     private int uses;
     public Shield(float p,int u){
         protection = p;
@@ -17,6 +17,7 @@ public class Shield {
     }
     public float protect(){
         if (uses > 0){
+            uses--;
             return protection;
         }
         else{

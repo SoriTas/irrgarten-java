@@ -57,8 +57,9 @@ public class Dice {
        return generator.nextFloat() * (competence + 1);
    }
    static public boolean discardElement(int usesLeft){
-    return (generator.nextInt(MAX_USES + 1) < usesLeft);
+    return (generator.nextInt(MAX_USES + 1) > usesLeft);
    }
+  
    
    
 }

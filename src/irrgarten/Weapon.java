@@ -17,6 +17,7 @@ public class Weapon {
     }
     public float attack(){
         if (uses > 0){
+            uses--;
             return power;
         }
         else{
