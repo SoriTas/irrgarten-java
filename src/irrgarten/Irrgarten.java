@@ -8,8 +8,14 @@ package irrgarten;
  *
  * @author manuel
  */
-public class Irrgarten {
+enum Directions { LEFT, RIGHT, UP, DOWN}
 
+enum Orientation {VERTICAL, HORIZONTAL}
+
+enum GameCharacter {PLAYER, MONSTER}
+
+public class Irrgarten {
+    
     /**
      * @param args the command line arguments
      */
@@ -17,7 +23,10 @@ public class Irrgarten {
         // TODO code application logic here
         System.out.println("Primera Salida");
         System.out.println("hola");
-        System.out.println("Este es el cambio que he añadido");
-    }
+        System.out.println("Hola vs code");
+        System.out.println("Este es el test de prueba");
+        System.out.println( "Mando este mensaje desde el portatil de pablo");
+            }
+    
     
 }
