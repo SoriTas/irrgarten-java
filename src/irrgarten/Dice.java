@@ -9,7 +9,7 @@ import java.util.Random;
  * @author manuel
  */
 public class Dice {
-   static private int MAX_USES = 5;
+   static private final int MAX_USES = 5;
    static private final float MAX_INTELLIGENCE = 10.0f;
    static private final float MAX_STRENGTH = 10.0f;
    static private final float RESURRECT_PROB = 0.3f;
