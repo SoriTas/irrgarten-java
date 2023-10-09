@@ -52,4 +52,46 @@ public class Player {
         
     }
     
+    public void setPos(int _row, int _col){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
+    public boolean dead(){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
+    public Directions move(Directions direction, Directions validMoves){
+        
+       throw new UnsupportedOperationException();
+        
+    }
+    
+    public float attack(){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
+    public boolean defend(float receivedAttack){
+        
+       throw new UnsupportedOperationException(); 
+        
+    }
+    
+    public void receiveReward(){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
+    public String toString(){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
 }
