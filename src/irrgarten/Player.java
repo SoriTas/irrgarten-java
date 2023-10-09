@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package irrgarten;
-
 /**
  *
  * @author manuel
@@ -21,4 +20,9 @@ public class Player {
     private int row;
     private int col;
     private int consecutivesHits = 0;
+    
+    public void recieveWeapon(Weapon weapon){
+        
+    }
+    
 }
