@@ -21,4 +21,35 @@ public class Player {
     private int row;
     private int col;
     private int consecutivesHits = 0;
+    
+    public Player(char _number, float _intelligence, float _strength){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
+    public void resurrect(){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
+    public int getRow(){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
+    public int getCol(){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
+    public char getNumber(){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
 }
