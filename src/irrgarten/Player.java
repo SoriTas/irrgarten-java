@@ -52,8 +52,7 @@ public class Player {
     
     public char getNumber(){
         
-        throw new UnsupportedOperationException();
-        
+        throw new UnsupportedOperationException();    
     }
     
     public void setPos(int _row, int _col){
@@ -97,5 +96,34 @@ public class Player {
         throw new UnsupportedOperationException();
         
     }
+    private void recieveWeapon(Weapon weapon){
+        throw new UnsupportedOperationException();  
+    }
+    
+    private void recieveShields(Shield shield){
+        throw new UnsupportedOperationException();  
+    }
+    private float sumWeapons(){
+        throw new UnsupportedOperationException();  
+    } 
+    private float sumShields(){
+        throw new UnsupportedOperationException();  
+    }
+    private float defensiveEnergy(){
+        throw new UnsupportedOperationException();  
+    }
+    private boolean manageHit(float recievedAttack){
+        throw new UnsupportedOperationException();  
+    }
+    private void resetHits(){
+        throw new UnsupportedOperationException();  
+    }
+    private void gotWounded(){
+        throw new UnsupportedOperationException();  
+    }
+    private void intConsecutiveHits(){
+        throw new UnsupportedOperationException();  
+    }
+    
     
 }
