@@ -21,8 +21,63 @@ public class Player {
     private int col;
     private int consecutivesHits = 0;
     
-    public void recieveWeapon(Weapon weapon){
+    public Player(char _number, float _intelligence, float _strength){
+        
+        throw new UnsupportedOperationException();
         
     }
+    
+    public void resurrect(){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
+    public int getRow(){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
+    public int getCol(){
+        
+        throw new UnsupportedOperationException();
+        
+    }
+    
+    public char getNumber(){
+        
+        throw new UnsupportedOperationException();    
+    }
+    
+    private void recieveWeapon(Weapon weapon){
+        throw new UnsupportedOperationException();  
+    }
+    
+    private void recieveShields(Shield shield){
+        throw new UnsupportedOperationException();  
+    }
+    private float sumWeapons(){
+        throw new UnsupportedOperationException();  
+    } 
+    private float sumShields(){
+        throw new UnsupportedOperationException();  
+    }
+    private float defensiveEnergy(){
+        throw new UnsupportedOperationException();  
+    }
+    private boolean manageHit(float recievedAttack){
+        throw new UnsupportedOperationException();  
+    }
+    private void resetHits(){
+        throw new UnsupportedOperationException();  
+    }
+    private void gotWounded(){
+        throw new UnsupportedOperationException();  
+    }
+    private void intConsecutiveHits(){
+        throw new UnsupportedOperationException();  
+    }
+    
     
 }
