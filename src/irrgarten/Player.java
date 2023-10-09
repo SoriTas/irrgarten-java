@@ -4,6 +4,8 @@
  */
 package irrgarten;
 
+import java.util.*;
+
 /**
  *
  * @author manuel
@@ -21,6 +23,8 @@ public class Player {
     private int row;
     private int col;
     private int consecutivesHits = 0;
+    private ArrayList<Weapon>armas= new ArrayList<Weapon>();
+    private ArrayList<Weapon>escudos= new ArrayList<Weapon>();
     
     public Player(char _number, float _intelligence, float _strength){
         
