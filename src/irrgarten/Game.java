@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package irrgarten;
-
+import java.util.ArrayList;
 /**
  *
  * @author manuel
@@ -12,6 +12,10 @@ public class Game {
     private static final int MAX_ROUNDS = 10;
     private int currentPlayerIndex;
     private String log;
+    private Player currentPlayer;
+    private ArrayList<Player> players;
+    private ArrayList<Monster> monsters;
+    private Labyrinth labyrinth;
     
     public Game(int nPlayers){
         throw new UnsupportedOperationException();
