@@ -22,40 +22,41 @@ public class Monster {
         throw new UnsupportedOperationException();
         
     }
-    
+    //Checks if the monster is dead. Return a true if health is lower or equal to zero
     public boolean dead(){
         
-        throw new UnsupportedOperationException();
+        return health <= 0;
         
     }
-    
+    //Return a value generated from the dice class method intensity passing the strength attribute as argument
     public float attack(){
         
-        throw new UnsupportedOperationException();
+        return Dice.intensity(strength);
         
     }
-
+//EN LA PROXIMA PRACTICA
     public boolean defend(float receivedAttack){
         
         throw new UnsupportedOperationException();
         
     }
-    
-    public void setPos(int row, int col){
+    //Refresh the position of the monster
+    public void setPos(int _row, int _col){
         
-        throw new UnsupportedOperationException();
+        row = _row;
+        col = _col;
         
     }
-    
+    //Return the a string containing the stats of the mosnter
     public String toString(){
         
-        throw new UnsupportedOperationException();
-        
+        String cadena = "Name: " + name + ";Intelligence: " + intelligence + ";Strength: " + strength + ";Health: " + health +";Row: " + row + ";Col: " + col;
+        return cadena;
     }
-    
+    //Decrease one unit the health of the monster
     private void gotWounded(){
         
-        throw new UnsupportedOperationException();
+        health--;
         
     }
     
