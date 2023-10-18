@@ -27,46 +27,50 @@ public class Player {
     private ArrayList<Weapon>escudos= new ArrayList<Weapon>();
     
     public Player(char _number, float _intelligence, float _strength){
-        
-        throw new UnsupportedOperationException();
+        number = _number;
+        name = "Player #" + _number;
+        intelligence = _intelligence;
+        strength = _strength;
         
     }
     
     public void resurrect(){
         
-        throw new UnsupportedOperationException();
-        
+        armas.clear();
+        escudos.clear();
+        health = INITIAL_HEALTH;
+        consecutivesHits = 0;
     }
     
     public int getRow(){
         
-        throw new UnsupportedOperationException();
+        return row;
         
     }
     
     public int getCol(){
         
-        throw new UnsupportedOperationException();
-        
+        return col;
     }
     
     public char getNumber(){
         
-        throw new UnsupportedOperationException();    
+        return number;
     }
     
     public void setPos(int _row, int _col){
         
-        throw new UnsupportedOperationException();
+        row = _row;
+        col = _col;
         
     }
     
     public boolean dead(){
         
-        throw new UnsupportedOperationException();
+        return health <= 0;
         
     }
-    
+    //Siguiente Practica
     public Directions move(Directions direction, Directions validMoves){
         
        throw new UnsupportedOperationException();
@@ -75,16 +79,16 @@ public class Player {
     
     public float attack(){
         
-        throw new UnsupportedOperationException();
+        return strength + sumWeapons();
         
     }
     
     public boolean defend(float receivedAttack){
         
-       throw new UnsupportedOperationException(); 
+       return manageHit(receivedAttack); 
         
     }
-    
+    //Siguiente Practica
     public void receiveReward(){
         
         throw new UnsupportedOperationException();
@@ -93,36 +97,46 @@ public class Player {
     
     public String toString(){
         
-        throw new UnsupportedOperationException();
-        
+        String cadena = name + ";Strength: " + strength + ";Intelligence: " + intelligence + ";Health: " + health;
+        return cadena;
     }
+    //Siguente Practica
     private void recieveWeapon(Weapon weapon){
         throw new UnsupportedOperationException();  
     }
-    
+    //Siguiente Practica
     private void recieveShields(Shield shield){
         throw new UnsupportedOperationException();  
     }
     private float sumWeapons(){
-        throw new UnsupportedOperationException();  
+        float suma = 0f;
+        for (int i = 0; i < armas.size();i++){
+            suma = suma + armas.get(i).attack();
+        }  
+        return suma;
     } 
     private float sumShields(){
-        throw new UnsupportedOperationException();  
+        float suma = 0f;
+        for (int i = 0; i < escudos.size();i++){
+            suma = suma + escudos.get(i).attack();
+        }  
+        return suma;  
     }
     private float defensiveEnergy(){
-        throw new UnsupportedOperationException();  
+        return intelligence + sumShields();
     }
+    //Siguiente Practica
     private boolean manageHit(float recievedAttack){
         throw new UnsupportedOperationException();  
     }
     private void resetHits(){
-        throw new UnsupportedOperationException();  
+         consecutivesHits = 0;
     }
     private void gotWounded(){
-        throw new UnsupportedOperationException();  
+        health--;  
     }
     private void intConsecutiveHits(){
-        throw new UnsupportedOperationException();  
+        consecutivesHits++;
     }
     
     
