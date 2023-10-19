@@ -19,24 +19,39 @@ public class Labyrinth {
     private int nColumns;
     private int exitRow;
     private int exitCol;
-    private ArrayList<MonsterSquare> monsterSquare;
-    private ArrayList<LabyrinthSquare> labyrinthSquare;
-    private Arraylist<PlayerSquare> playerSquare;
+    private Monster[][] monsterGrid;
+    private char[][] labyrinthGrid;
+    private Player[][] playerGrid;
     
-    public LabyrithLabyrith(int _nCols, int _nCows, int _exitRows, int _exitCol){
-        throw new UnsupportedOperationException();
-    }
+    public Labyrinth(int _nRows, int _nCols, int _exitRows, int _exitCol){
+        monsterGrid = new Monster[_nRows][_nCols];
+        labyrinthGrid = new char[_nRows][_nCols];
+        playerGrid = new Player[_nRows][_nCols];
+        nRows = _nRows;
+        nColumns = _nCols;
+        exitRow = _exitRows;
+        exitCol = _exitCol;
+    }//Siguiente Practica
     public void spreadPlayers(ArrayList<Player> players){
+        
         throw new UnsupportedOperationException();
     }
     public boolean haveAWInner(){
-        throw new UnsupportedOperationException();
+        if(playerGrid[exitRow][exitCol] != null){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     public String toString(){
         throw new UnsupportedOperationException();
     }
     public void addMonster(int row,int col, Monster monster){
-        throw new UnsupportedOperationException();
+        if (labyrinthGrid[row][col] != EMPTY_CHAR){
+            throw new UnsupportedOperationException();
+        }
+        monsterGrid[row][col] = monster;
     }
     public Monster putPlayer(Directions direction, Player player){
         throw new UnsupportedOperationException();
