@@ -26,10 +26,10 @@ public class Dice {
    static public int whoStarts(int nPlayers){
        return generator.nextInt(nPlayers);
    }
-   static public double randomIntelligence(){
+   static public float randomIntelligence(){
        return generator.nextFloat() * MAX_INTELLIGENCE;
    }
-   static public double randomStrength(){
+   static public float randomStrength(){
        return generator.nextFloat() * MAX_STRENGTH;
    }
    static public boolean resurrectPlayer(){
@@ -50,7 +50,7 @@ public class Dice {
    static public float shieldPower(){
        return generator.nextInt(MAX_SHIELD + 1);
    }
-   static public int usesLelft(){
+   static public int usesLeft(){
        return generator.nextInt(MAX_USES + 1);
    }
    static public float intensity(float competence){

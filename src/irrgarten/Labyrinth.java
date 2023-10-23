@@ -6,7 +6,7 @@ package irrgarten;
 import java.util.ArrayList;
 /**
  *
- * @author manuel
+ * @author sori
  */
 public class Labyrinth {
     private static final char BLOCK_CHAR = 'X';
@@ -45,13 +45,22 @@ public class Labyrinth {
         }
     }
     public String toString(){
-        throw new UnsupportedOperationException();
+        
+        String labyrinthState;
+        
+        labyrinthState = " ";
+        
+        return labyrinthState;
+        
     }
     public void addMonster(int row,int col, Monster monster){
         if (labyrinthGrid[row][col] != EMPTY_CHAR){
             throw new UnsupportedOperationException();
         }
         monsterGrid[row][col] = monster;
+        
+        monster.setPos(row, col);
+        
     }
     public Monster putPlayer(Directions direction, Player player){
         throw new UnsupportedOperationException();
@@ -63,22 +72,81 @@ public class Labyrinth {
         throw new UnsupportedOperationException();
     }
     private boolean posOK(int row, int col){
-        throw new UnsupportedOperationException();
+        
+        if( row < nRows && row > 0 && col < nColumns && col > 0){
+            
+            return true;
+        }
+        else{
+            
+            return false;
+            
+        }
+        
     }
     private boolean emptyPos(int row,int col){
-        throw new UnsupportedOperationException();
+        
+        if(labyrinthGrid[row][col] == '-'){
+            
+            return true;
+            
+        }
+        else{
+            
+            return false;
+            
+        }
+        
     }
     private boolean monsterPos(int row,int col){
         throw new UnsupportedOperationException();
     }
+    private boolean exitPos(int row, int col){
+        
+        if( labyrinthGrid[row][col] == 'E'){
+            
+            return true;
+            
+        }
+        else{
+            
+            return false;
+            
+        }
+        
+    }
     private boolean combatPos(int row,int col){
-        throw new UnsupportedOperationException();
+        
+        if( labyrinthGrid[row][col] == 'C'){
+            
+            return true;
+            
+        }
+        else{
+            
+            return false;
+            
+        }
+        
     }
     private boolean canStepOn(int row, int col){
-        throw new UnsupportedOperationException();
+        
+        if(posOK(row,col) || emptyPos(row,col) || monsterPos(row,col) || exitPos(row,col)){
+            
+            return true;
+            
+        }
+        else{
+            
+            return false;
+            
+        }
+        
     }
     private void updateOldPos(int row,int col){
-        throw new UnsupportedOperationException();
+        
+        
+        
     }
     private int[] dir2Pos(int row, int col, Directions direction){
         throw new UnsupportedOperationException();

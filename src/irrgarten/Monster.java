@@ -6,7 +6,7 @@ package irrgarten;
 
 /**
  *
- * @author sori
+ * @author manuel
  */
 public class Monster {
     private static final int INITIAL_HEALTH = 5;

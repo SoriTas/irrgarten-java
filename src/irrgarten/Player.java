@@ -77,7 +77,7 @@ public class Player {
         
     }
     
-    public float attack(){
+    public double attack(){
         
         return strength + sumWeapons();
         
@@ -122,7 +122,7 @@ public class Player {
         }  
         return suma;  
     }
-    private float defensiveEnergy(){
+    private double defensiveEnergy(){
         return intelligence + sumShields();
     }
     //Siguiente Practica

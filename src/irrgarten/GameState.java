@@ -24,6 +24,7 @@ public class GameState {
         winner = _winner;
         log = _log;
     }
+    
     public String getLabyrinthv(){
         return labyrinthv;
     }
