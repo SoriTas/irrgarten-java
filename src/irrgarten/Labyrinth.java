@@ -13,6 +13,7 @@ public class Labyrinth {
     private static final char EMPTY_CHAR = '-';
     private static final char COMBAT_CHAR = 'C';
     private static final char EXIT_CHAR = 'E';
+    private static final char MONSTER_CHAR = 'M';
     private static final int ROW = 0;
     private static final int COL = 1;
     private  int nRows;
@@ -31,7 +32,32 @@ public class Labyrinth {
         nColumns = _nCols;
         exitRow = _exitRows;
         exitCol = _exitCol;
-    }//Siguiente Practica
+        
+        for(int i = 0; i < nRows; i++){
+            
+            for(int j = 0; j < nColumns; j++){
+                
+                labyrinthGrid[i][j] = EMPTY_CHAR;
+                
+            }
+            
+        }
+        
+        labyrinthGrid[exitRow][exitCol] = EXIT_CHAR;
+        
+    }
+    
+    public int getnRows(){
+        
+        return nRows;
+        
+    }
+    public int getnColumns(){
+        
+        return nColumns;
+        
+    }
+    //Siguiente Practica
     public void spreadPlayers(ArrayList<Player> players){
         
         throw new UnsupportedOperationException();
@@ -46,20 +72,27 @@ public class Labyrinth {
     }
     public String toString(){
         
-        String labyrinthState;
-        
-        labyrinthState = " ";
-        
-        return labyrinthState;
+        return labyrinthGrid.toString();
         
     }
     public void addMonster(int row,int col, Monster monster){
-        if (labyrinthGrid[row][col] != EMPTY_CHAR){
+        if (!posOK(row,col)){
             throw new UnsupportedOperationException();
         }
-        monsterGrid[row][col] = monster;
+        if(labyrinthGrid[row][col] == EMPTY_CHAR){
+           
+            labyrinthGrid[row][col] = MONSTER_CHAR;
         
-        monster.setPos(row, col);
+            monsterGrid[row][col] = monster;
+        
+            monster.setPos(row, col);
+            
+        }
+        else{
+            
+            System.out.println("The given position isn't empty");
+            
+        }
         
     }
     public Monster putPlayer(Directions direction, Player player){
@@ -99,11 +132,21 @@ public class Labyrinth {
         
     }
     private boolean monsterPos(int row,int col){
-        throw new UnsupportedOperationException();
+        
+        if( labyrinthGrid[row][col] == MONSTER_CHAR){
+            
+            return true;
+            
+        }
+        else{
+            
+            return false;
+            
+        }
     }
     private boolean exitPos(int row, int col){
         
-        if( labyrinthGrid[row][col] == 'E'){
+        if( labyrinthGrid[row][col] == EXIT_CHAR){
             
             return true;
             
@@ -117,7 +160,7 @@ public class Labyrinth {
     }
     private boolean combatPos(int row,int col){
         
-        if( labyrinthGrid[row][col] == 'C'){
+        if( labyrinthGrid[row][col] == COMBAT_CHAR){
             
             return true;
             
@@ -145,7 +188,20 @@ public class Labyrinth {
     }
     private void updateOldPos(int row,int col){
         
-        
+        if(posOK(row,col)){
+            
+            if(labyrinthGrid[row][col] == COMBAT_CHAR){
+                
+                labyrinthGrid[row][col] = MONSTER_CHAR;
+                
+            }
+            else{
+                
+                labyrinthGrid[row][col] = EMPTY_CHAR;
+                
+            }
+            
+        }
         
     }
     private int[] dir2Pos(int row, int col, Directions direction){

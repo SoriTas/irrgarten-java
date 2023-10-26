@@ -14,6 +14,7 @@ public class Game {
     private int currentPlayerIndex;
     private String log;
     private Player currentPlayer;
+    private int numPlayers;
     private ArrayList<Player> players;
     private ArrayList<Monster> monsters;
     private Labyrinth labyrinth;
@@ -31,6 +32,8 @@ public class Game {
             
             players.add(aux);
             
+            numPlayers++;
+            
         }
         
         int start = Dice.whoStarts(nPlayers);
@@ -42,13 +45,11 @@ public class Game {
         ArrayList<Monster> monsters = new ArrayList<Monster>();
         
         //Hay que poner unos valores para inicializar el tablero
-        Labyrinth tablero = new Labyrinth(0,0,0,0);
-        
-        labyrinth = tablero;
+        labyrinth = new Labyrinth(5,5,2,3);
         
         //En teoria hay que inicializar tambien el log pero no se a que
         
-        log = " ";
+        log = null;
         
         configureLabyrinth();
         
@@ -73,30 +74,28 @@ public class Game {
         
     }
     private void configureLabyrinth(){
-        
-        String monName = " ";
-        
-        while(monName != ""){
             
-            System.out.println("Enter monster name:");
+        for( int i = 1; i < 3; i++ ){
             
-            monName = System.in.toString();
+            String monName = "Monstruo" + i;
             
             Monster mon = new Monster(monName, Dice.randomIntelligence(), Dice.randomStrength());
             
-            int row = Dice.randomPos( labyrinth.nRows),
-                col = Dice.randomPos(labyrinth.nColumns);
+            int row = Dice.randomPos( labyrinth.getnRows()),
+                col = Dice.randomPos(labyrinth.getnColumns());
             
             labyrinth.addMonster(row, col , mon);
-            
+        
         }
         
         
-        
+            
     }
     private void nextPlayer(){
         
         currentPlayerIndex +=1;
+        
+        currentPlayerIndex = currentPlayerIndex%numPlayers;
         
         currentPlayer = players.get(currentPlayerIndex);
         

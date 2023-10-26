@@ -74,7 +74,7 @@ public class Irrgarten {
             
             Dice.shieldsReward();
             
-            Dice.usesLelft();
+            Dice.usesLeft();
             
             Dice.weaponPower();
             
