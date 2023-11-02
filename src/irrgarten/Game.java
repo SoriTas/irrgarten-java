@@ -45,7 +45,7 @@ public class Game {
         ArrayList<Monster> monsters = new ArrayList<Monster>();
         
         //Hay que poner unos valores para inicializar el tablero
-        labyrinth = new Labyrinth(5,5,2,3);
+        labyrinth = new Labyrinth(5,7,5,7);
         
         //En teoria hay que inicializar tambien el log pero no se a que
         
@@ -75,21 +75,27 @@ public class Game {
     }
     private void configureLabyrinth(){
             
-        for( int i = 1; i < 3; i++ ){
+        String monName1 = "Monstruo" + 1;
             
-            String monName = "Monstruo" + i;
+        Monster mon1 = new Monster(monName1, Dice.randomIntelligence(), Dice.randomStrength());
             
-            Monster mon = new Monster(monName, Dice.randomIntelligence(), Dice.randomStrength());
+        int row1 = 2,
+            col1 = 3;
             
-            int row = Dice.randomPos( labyrinth.getnRows()),
-                col = Dice.randomPos(labyrinth.getnColumns());
-            
-            labyrinth.addMonster(row, col , mon);
+        labyrinth.addMonster(row1, col1, mon1);
         
-        }
-        
-        
+        String monName2 = "Monstruo" + 2;
             
+        Monster mon2 = new Monster(monName2, Dice.randomIntelligence(), Dice.randomStrength());
+            
+        int row2 = 4,
+            col2 = 5;
+            
+        labyrinth.addMonster(row2, col2 , mon2);
+        
+        labyrinth.addBlock(Orientation.HORIZONTAL, 1, 5, 3);
+        labyrinth.addBlock(Orientation.VERTICAL, 3, 3, 2);
+        labyrinth.addBlock(Orientation.VERTICAL, 3, 4, 2);
     }
     private void nextPlayer(){
         
