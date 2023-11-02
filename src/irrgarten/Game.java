@@ -110,7 +110,17 @@ public class Game {
         throw new UnsupportedOperationException();
     }
     private void manageResurrection(){
-        throw new UnsupportedOperationException();
+        
+        boolean resurrect = Dice.resurrectPlayer();
+        
+        if(resurrect){
+            
+            this.currentPlayer.resurrect();
+            this.logResurrected();
+            
+        }
+        
+        this.logPlayerSkipTurn();
     }
     private void logPlayerWon(){
         

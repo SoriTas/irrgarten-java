@@ -24,7 +24,7 @@ public class Player {
     private int col;
     private int consecutivesHits = 0;
     private ArrayList<Weapon>armas= new ArrayList<Weapon>();
-    private ArrayList<Weapon>escudos= new ArrayList<Weapon>();
+    private ArrayList<Shield>escudos= new ArrayList<Shield>();
     
     public Player(char _number, float _intelligence, float _strength){
         number = _number;
@@ -106,7 +106,25 @@ public class Player {
     }
     //Siguiente Practica
     private void recieveShields(Shield shield){
-        throw new UnsupportedOperationException();  
+        
+        for(int i = escudos.size()-1; i >= 0; i--){
+            
+            boolean discard = escudos.get(i).discard();
+            
+            if(discard){
+                
+                escudos.remove(escudos.get(i));
+                
+            }
+            
+        }
+        int size = escudos.size();
+        
+        if(size < MAX_SHIELDS){
+            
+            escudos.add(shield);
+            
+        }
     }
     private float sumWeapons(){
         float suma = 0f;
@@ -118,7 +136,7 @@ public class Player {
     private float sumShields(){
         float suma = 0f;
         for (int i = 0; i < escudos.size();i++){
-            suma = suma + escudos.get(i).attack();
+            suma = suma + escudos.get(i).protect();
         }  
         return suma;  
     }
