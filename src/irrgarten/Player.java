@@ -33,7 +33,9 @@ public class Player {
         strength = _strength;
         
     }
-    
+     /*
+    @brief Empty the weapons and shields arrays set health to the initial value and consecutive hits to 0
+    */
     public void resurrect(){
         
         armas.clear();
@@ -41,30 +43,45 @@ public class Player {
         health = INITIAL_HEALTH;
         consecutivesHits = 0;
     }
-    
+     /*
+    @brief Return the row of the Player
+    @return player row
+    */
     public int getRow(){
         
         return row;
         
     }
-    
+     /*
+    @brief return the col of the player
+    @return player col
+    */
     public int getCol(){
         
         return col;
     }
-    
+     /*
+    @brief get the index number of the player
+    @return index number
+    */
     public char getNumber(){
         
         return number;
     }
-    
+     /*
+    @brief set the pos of the player
+    @param _row row of the pos
+    @param _col col of the pos
+    */
     public void setPos(int _row, int _col){
         
         row = _row;
         col = _col;
         
     }
-    
+     /*
+    @brief return true if the player is dead
+    */
     public boolean dead(){
         
         return health <= 0;
@@ -76,13 +93,20 @@ public class Player {
        throw new UnsupportedOperationException();
         
     }
-    
+     /*
+    @brief get the attack of a player
+    @return sum of strength and the addition of all the weapons in the weapon array
+    */
     public double attack(){
         
         return strength + sumWeapons();
         
     }
-    
+     /*
+    @brief get if the player defends the attack
+    @param recievedAttack the number of attack points
+    @return true if he managed to defend the attack
+    */
     public boolean defend(float receivedAttack){
         
        return manageHit(receivedAttack); 
@@ -94,11 +118,29 @@ public class Player {
         throw new UnsupportedOperationException();
         
     }
-    
+     /*
+    @brief
+    */
     public String toString(){
         
         String cadena = name + ";Strength: " + strength + ";Intelligence: " + intelligence + ";Health: " + health;
         return cadena;
+    }
+     /*
+    @brief Create a new weapon
+    @return new weapon object
+    */
+    public Weapon newWeapon(){
+        Weapon weapon = new Weapon(Dice.weaponPower(),Dice.usesLeft());
+        return weapon;
+    }
+    /*
+    @brief Create a new shield
+    @return new shield object
+    */
+    public Shield newShield(){
+        Shield shield = new Shield(Dice.shieldPower(),Dice.usesLeft());
+        return shield;
     }
     //Siguente Practica
     private void recieveWeapon(Weapon weapon){
@@ -126,6 +168,10 @@ public class Player {
             
         }
     }
+    /*
+    @brief add the power attack of the weapons in the array
+    @return total weapon power
+    */
     private float sumWeapons(){
         float suma = 0f;
         for (int i = 0; i < armas.size();i++){
@@ -133,6 +179,10 @@ public class Player {
         }  
         return suma;
     } 
+    /*
+    @brief add the power attack of the shields in the array
+    @return total shield power
+    */
     private float sumShields(){
         float suma = 0f;
         for (int i = 0; i < escudos.size();i++){
@@ -140,6 +190,10 @@ public class Player {
         }  
         return suma;  
     }
+    /*
+    @brief Return the total points of intelligence and sumshields
+    @return defensive Energy
+    */
     private double defensiveEnergy(){
         return intelligence + sumShields();
     }
@@ -147,12 +201,21 @@ public class Player {
     private boolean manageHit(float recievedAttack){
         throw new UnsupportedOperationException();  
     }
+    /*
+    @brief set consecutivesHits to 0 
+    */
     private void resetHits(){
          consecutivesHits = 0;
     }
+    /*
+    @brief decrease the health parameter 
+    */
     private void gotWounded(){
         health--;  
     }
+    /*
+    @brief Increase the consecutiveHits parameter
+    */
     private void intConsecutiveHits(){
         consecutivesHits++;
     }

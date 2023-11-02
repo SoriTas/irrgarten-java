@@ -19,45 +19,60 @@ public class Monster {
     
     public Monster(String _name, float _intelligence, float _strength){
         
-        throw new UnsupportedOperationException();
+        name = _name;
+        intelligence = _intelligence;
+        strength = _strength;
+        health = INITIAL_HEALTH;
+        row = 0;
+        col = 0;
         
     }
-    //Checks if the monster is dead. Return a true if health is lower or equal to zero
+    /*
+    @brief Checks if the monster is dead. Return a true if health is lower or equal to zero
+    */
     public boolean dead(){
         
         return health <= 0;
         
     }
-    //Return a value generated from the dice class method intensity passing the strength attribute as argument
+    /*
+    @brief Return a value generated from the dice class method intensity passing the strength attribute as argument
+    */
     public float attack(){
         
         return Dice.intensity(strength);
         
     }
-//EN LA PROXIMA PRACTICA
+    //EN LA PROXIMA PRACTICA
     public boolean defend(float receivedAttack){
         
         throw new UnsupportedOperationException();
         
     }
-    //Refresh the position of the monster
+    /*
+    @brief Refresh the position of the monster
+    @param _row Fila nueva
+    @param _col Columna nueva
+    */
     public void setPos(int _row, int _col){
         
         row = _row;
         col = _col;
         
     }
-    //Return the a string containing the stats of the mosnter
+    /*
+    @brief Return the a string containing the stats of the mosnter
+    */
     public String toString(){
         
         String cadena = "Name: " + name + ";Intelligence: " + intelligence + ";Strength: " + strength + ";Health: " + health +";Row: " + row + ";Col: " + col;
         return cadena;
     }
-    //Decrease one unit the health of the monster
+    /*
+    @brief Decrease one unit the health of the monster
+    */
     private void gotWounded(){
-        
         health--;
-        
     }
     
 }
