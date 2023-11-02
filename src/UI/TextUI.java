@@ -1,5 +1,5 @@
 
-package irrgarten.UI;
+package UI;
 
 import irrgarten.Directions;
 import irrgarten.GameState;

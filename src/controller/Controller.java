@@ -1,4 +1,4 @@
-package irrgarten.controller;
+package controller;
 
 import irrgarten.Directions;
 import irrgarten.Game;
