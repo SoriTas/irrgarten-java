@@ -87,17 +87,25 @@ public class Player {
         return health <= 0;
         
     }
-    //Siguiente Practica
-    public Directions move(Directions direction, Directions validMoves){
+    //Preguntar al teacher
+    public Directions move(Directions direction, Directions validMoves[]){
         
-       throw new UnsupportedOperationException();
+       int size = validMoves.length;
+       boolean contained = validMoves.equals(direction);
+       
+       if(size > 0 && !contained){
+           Directions firstElement = validMoves[0];
+           return firstElement;
+       }
+       else 
+           return direction;
         
     }
      /*
     @brief get the attack of a player
     @return sum of strength and the addition of all the weapons in the weapon array
     */
-    public double attack(){
+    public float attack(){
         
         return strength + sumWeapons();
         
@@ -109,13 +117,24 @@ public class Player {
     */
     public boolean defend(float receivedAttack){
         
-       return manageHit(receivedAttack); 
+        return this.manageHit(receivedAttack);
         
     }
     //Siguiente Practica
     public void receiveReward(){
         
-        throw new UnsupportedOperationException();
+        int wReward = Dice.weaponsReward();
+        int sReward = Dice.shieldsReward();
+        for(int i = 1; i <= wReward; i++){
+            Weapon wnew = this.newWeapon();
+            this.recieveWeapon(wnew);
+        }
+        for(int i = 1; i <= wReward; i++){
+            Shield snew = this.newShield();
+            this.recieveShields(snew);
+        }
+        int extraHealth = Dice.healthReward();
+        health += extraHealth;
         
     }
      /*
@@ -144,7 +163,24 @@ public class Player {
     }
     //Siguente Practica
     private void recieveWeapon(Weapon weapon){
-        throw new UnsupportedOperationException();  
+            for(int i = armas.size()-1; i >= 0; i--){
+            
+            boolean discard = armas.get(i).discard();
+            
+            if(discard){
+                
+                armas.remove(armas.get(i));
+                
+            }
+            
+        }
+        int size = armas.size();
+        
+        if(size < MAX_SHIELDS){
+            
+            armas.add(weapon);
+            
+        }
     }
     //Siguiente Practica
     private void recieveShields(Shield shield){
@@ -194,12 +230,25 @@ public class Player {
     @brief Return the total points of intelligence and sumshields
     @return defensive Energy
     */
-    private double defensiveEnergy(){
+    private float defensiveEnergy(){
         return intelligence + sumShields();
     }
     //Siguiente Practica
     private boolean manageHit(float recievedAttack){
-        throw new UnsupportedOperationException();  
+        float defense = this.defensiveEnergy();
+        if(defense < recievedAttack){
+            this.gotWounded();
+            this.intConsecutiveHits();
+        }
+        else
+            this.resetHits();
+        boolean lose;
+        if(this.consecutivesHits == HITS2LOSE || this.dead()){
+            this.resetHits();
+            return lose = true;
+        }
+        else
+            return lose = false;
     }
     /*
     @brief set consecutivesHits to 0 

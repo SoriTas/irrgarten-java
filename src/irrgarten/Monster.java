@@ -46,7 +46,17 @@ public class Monster {
     //EN LA PROXIMA PRACTICA
     public boolean defend(float receivedAttack){
         
-        throw new UnsupportedOperationException();
+        boolean isDead = this.dead();
+        
+    if  (!isDead){
+        float defensiveEnergy = Dice.intensity(intelligence);
+        if(defensiveEnergy < receivedAttack){
+            this.gotWounded();
+            isDead = this.dead();
+        }
+        
+    }
+    return isDead;
         
     }
     /*
