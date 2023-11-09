@@ -127,8 +127,8 @@ public class Labyrinth {
         }
     }
     //Preguntar al teacher
-    public Directions[] validMoves(int row,int col){
-        Directions output[];
+    public ArrayList<Directions> validMoves(int row,int col){
+        ArrayList<Directions> output = new ArrayList<Directions>();
         if(canStepOn(row+1,col)){
             output.add(Directions.DOWN);
         }

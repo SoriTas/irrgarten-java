@@ -2,7 +2,7 @@ package controller;
 
 import irrgarten.Directions;
 import irrgarten.Game;
-import irrgarten.UI.TextUI;
+import UI.TextUI;
 
 
 public class Controller {

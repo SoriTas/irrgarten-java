@@ -23,8 +23,8 @@ public class Player {
     private int row;
     private int col;
     private int consecutivesHits = 0;
-    private ArrayList<Weapon>armas= new ArrayList<Weapon>();
-    private ArrayList<Shield>escudos= new ArrayList<Shield>();
+    private ArrayList<Weapon>weapons= new ArrayList<Weapon>();
+    private ArrayList<Shield>shields= new ArrayList<Shield>();
     
     public Player(char _number, float _intelligence, float _strength){
         number = _number;
@@ -38,8 +38,8 @@ public class Player {
     */
     public void resurrect(){
         
-        armas.clear();
-        escudos.clear();
+        weapons.clear();
+        shields.clear();
         health = INITIAL_HEALTH;
         consecutivesHits = 0;
     }
@@ -88,13 +88,13 @@ public class Player {
         
     }
     //Preguntar al teacher
-    public Directions move(Directions direction, Directions validMoves[]){
+    public Directions move(Directions direction, ArrayList <Directions> validMoves){
         
-       int size = validMoves.length;
+       int size = validMoves.size();
        boolean contained = validMoves.equals(direction);
        
        if(size > 0 && !contained){
-           Directions firstElement = validMoves[0];
+           Directions firstElement = validMoves.get(0);
            return firstElement;
        }
        else 
@@ -163,44 +163,44 @@ public class Player {
     }
     //Siguente Practica
     private void recieveWeapon(Weapon weapon){
-            for(int i = armas.size()-1; i >= 0; i--){
+            for(int i = weapons.size()-1; i >= 0; i--){
             
-            boolean discard = armas.get(i).discard();
+            boolean discard = weapons.get(i).discard();
             
             if(discard){
                 
-                armas.remove(armas.get(i));
+                weapons.remove(weapons.get(i));
                 
             }
             
         }
-        int size = armas.size();
+        int size = weapons.size();
         
         if(size < MAX_SHIELDS){
             
-            armas.add(weapon);
+            weapons.add(weapon);
             
         }
     }
     //Siguiente Practica
     private void recieveShields(Shield shield){
         
-        for(int i = escudos.size()-1; i >= 0; i--){
+        for(int i = shields.size()-1; i >= 0; i--){
             
-            boolean discard = escudos.get(i).discard();
+            boolean discard = shields.get(i).discard();
             
             if(discard){
                 
-                escudos.remove(escudos.get(i));
+                shields.remove(shields.get(i));
                 
             }
             
         }
-        int size = escudos.size();
+        int size = shields.size();
         
         if(size < MAX_SHIELDS){
             
-            escudos.add(shield);
+            shields.add(shield);
             
         }
     }
@@ -210,8 +210,8 @@ public class Player {
     */
     private float sumWeapons(){
         float suma = 0f;
-        for (int i = 0; i < armas.size();i++){
-            suma = suma + armas.get(i).attack();
+        for (int i = 0; i < weapons.size();i++){
+            suma = suma + weapons.get(i).attack();
         }  
         return suma;
     } 
@@ -221,8 +221,8 @@ public class Player {
     */
     private float sumShields(){
         float suma = 0f;
-        for (int i = 0; i < escudos.size();i++){
-            suma = suma + escudos.get(i).protect();
+        for (int i = 0; i < shields.size();i++){
+            suma = suma + shields.get(i).protect();
         }  
         return suma;  
     }

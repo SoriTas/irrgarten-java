@@ -133,7 +133,7 @@ public class Game {
         int currentRow = currentPlayer.getRow();
         int currentCol = currentPlayer.getCol();
         
-        Directions validMoves[] = labyrinth.validMoves(currentRow, currentCol);
+        ArrayList <Directions> validMoves = labyrinth.validMoves(currentRow, currentCol);
         Directions output = currentPlayer.move(preferredDirection, validMoves);
         return output;
     }
