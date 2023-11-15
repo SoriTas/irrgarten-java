@@ -21,11 +21,11 @@ public class Game {
     
     public Game(int nPlayers){
         
-        ArrayList<Player> players = new ArrayList<Player>(nPlayers);
+        players = new ArrayList<Player>(nPlayers);
         
         for(int i=0; i < nPlayers; i++){
             
-            char num = 'i';
+            char num = (char)(i+'0');
             float in = Dice.randomIntelligence();
             float str = Dice.randomStrength();
             Player aux = new Player(num,in,str);
@@ -42,10 +42,10 @@ public class Game {
         
         currentPlayer = players.get(start);
         
-        ArrayList<Monster> monsters = new ArrayList<Monster>();
+        monsters = new ArrayList<Monster>();
         
         //Hay que poner unos valores para inicializar el tablero
-        labyrinth = new Labyrinth(5,7,5,7);
+        labyrinth = new Labyrinth(5,7,4,6);
         
         //En teoria hay que inicializar tambien el log pero no se a que
         
@@ -91,9 +91,7 @@ public class Game {
         
         boolean winner = finished();
         
-        GameState estado = new GameState(labyrinth.toString(), players.toString(), monsters.toString(), currentPlayerIndex, winner, log);
-        
-        return estado;
+        return new GameState(labyrinth.toString(), players.toString(), monsters.toString(), currentPlayerIndex, winner, log);
         
     }
     private void configureLabyrinth(){
@@ -107,6 +105,8 @@ public class Game {
             
         labyrinth.addMonster(row1, col1, mon1);
         
+        monsters.add(mon1);
+        
         String monName2 = "Monstruo" + 2;
             
         Monster mon2 = new Monster(monName2, Dice.randomIntelligence(), Dice.randomStrength());
@@ -115,6 +115,8 @@ public class Game {
             col2 = 5;
             
         labyrinth.addMonster(row2, col2 , mon2);
+        
+        monsters.add(mon2);
         
         labyrinth.addBlock(Orientation.HORIZONTAL, 1, 5, 3);
         labyrinth.addBlock(Orientation.VERTICAL, 3, 3, 2);

@@ -45,10 +45,10 @@ public class Dice {
        return generator.nextInt(HEALTH_REWARD + 1);
    }
    static public float weaponPower(){
-       return generator.nextInt(MAX_ATTACK + 1);
+       return generator.nextFloat(MAX_ATTACK + 1);
    }
    static public float shieldPower(){
-       return generator.nextInt(MAX_SHIELD + 1);
+       return generator.nextFloat(MAX_SHIELD + 1);
    }
    static public int usesLeft(){
        return generator.nextInt(MAX_USES + 1);

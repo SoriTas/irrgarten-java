@@ -51,6 +51,9 @@ public class TextUI {
     }
     
     public void showGame(GameState gameState) {   
+    
+        System.out.println(gameState.getLabyrinthv());
+    
     }
     
 }

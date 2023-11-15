@@ -76,7 +76,21 @@ public class Labyrinth {
     }
     public String toString(){
         
-        return labyrinthGrid.toString();
+        String cadena = "";
+        
+        for(int i = 0; i < nRows; i++){
+            
+            for(int j = 0; j < nColumns; j++){
+                
+                cadena = cadena + labyrinthGrid[i][j] + " ";
+                
+            }
+            
+            cadena = cadena + "\n";
+            
+        }
+        
+        return cadena;
         
     }
     public void addMonster(int row,int col, Monster monster){
@@ -103,6 +117,7 @@ public class Labyrinth {
         int oldRow = player.getRow();
         int oldCol = player.getCol();
         int newPos[] = this.dir2Pos(oldRow, oldCol, direction);
+        
         Monster monster = this.putPlayer2D(oldRow, oldCol,newPos[ROW], newPos[COL], player);
         return monster;
         }
@@ -145,7 +160,7 @@ public class Labyrinth {
     }
     private boolean posOK(int row, int col){
         
-        if( row < nRows && row > 0 && col < nColumns && col > 0){
+        if( row < nRows && row >= 0 && col < nColumns && col >= 0){
             
             return true;
         }
@@ -158,10 +173,17 @@ public class Labyrinth {
     }
     private boolean emptyPos(int row,int col){
         
-        if(labyrinthGrid[row][col] == '-'){
+        if(posOK(row,col)){
+            if( labyrinthGrid[row][col] == EMPTY_CHAR){
             
-            return true;
+                return true;
             
+            }
+            else{
+            
+                return false;
+            
+            }
         }
         else{
             
@@ -172,10 +194,17 @@ public class Labyrinth {
     }
     private boolean monsterPos(int row,int col){
         
-        if( labyrinthGrid[row][col] == MONSTER_CHAR){
+        if(posOK(row,col)){
+            if( labyrinthGrid[row][col] == MONSTER_CHAR){
             
-            return true;
+                return true;
             
+            }
+            else{
+            
+                return false;
+            
+            }
         }
         else{
             
@@ -185,35 +214,47 @@ public class Labyrinth {
     }
     private boolean exitPos(int row, int col){
         
-        if( labyrinthGrid[row][col] == EXIT_CHAR){
+        if(posOK(row,col)){
+            if( labyrinthGrid[row][col] == EXIT_CHAR){
             
-            return true;
+                return true;
             
+            }
+            else{
+            
+                return false;
+            
+            }
         }
         else{
             
             return false;
             
         }
-        
     }
     private boolean combatPos(int row,int col){
         
-        if( labyrinthGrid[row][col] == COMBAT_CHAR){
+        if(posOK(row,col)){
+            if( labyrinthGrid[row][col] == COMBAT_CHAR){
             
-            return true;
+                return true;
             
+            }
+            else{
+            
+                return false;
+            
+            }
         }
         else{
             
             return false;
             
         }
-        
     }
     private boolean canStepOn(int row, int col){
         
-        if(posOK(row,col) || emptyPos(row,col) || monsterPos(row,col) || exitPos(row,col)){   
+        if(emptyPos(row,col) || monsterPos(row,col) || exitPos(row,col)){   
             return true;
         }
         else{ 
@@ -239,10 +280,37 @@ public class Labyrinth {
         
     }
     private int[] dir2Pos(int row, int col, Directions direction){
-        throw new UnsupportedOperationException();
+        int pos[] = new int[2];
+        
+        pos[ROW] = row;
+        pos[COL] = col;
+        
+        if(direction == Directions.UP){
+            pos[ROW]-=1;
+        }
+        if(direction == Directions.DOWN){
+            pos[ROW]+=1;
+        }
+        if(direction == Directions.RIGHT){
+            pos[COL]+=1;
+        }
+        if(direction == Directions.LEFT){
+            pos[COL]-=1;
+        }
+        return pos;
     }
-    private int[] randomEmptyPos(){
-        throw new UnsupportedOperationException();
+    public int[] randomEmptyPos(){
+        
+        int pos[] = new int[2];
+        
+        do{    
+        pos[ROW] = Dice.randomPos(nRows);
+        pos[COL] = Dice.randomPos(nColumns);
+        
+        }while(!emptyPos(pos[ROW],pos[COL]));
+        
+        return pos;
+        
     }
     private Monster putPlayer2D(int oldRow, int oldCol, int row, int col, Player player){
 
@@ -253,7 +321,7 @@ public class Labyrinth {
                 Player p = playerGrid[oldRow][oldCol];
                 if(p == player){
                     updateOldPos(oldRow, oldCol);
-                    p.setPos(oldRow, oldCol);
+                    playerGrid[oldRow][oldCol] = null;
                 }
             }
             boolean monsterPos = monsterPos(row, col);
@@ -265,6 +333,7 @@ public class Labyrinth {
                 char number = player.getNumber();
                 labyrinthGrid[row][col] = number;
             }
+            
             playerGrid[row][col] = player;
             player.setPos(row, col);
         }

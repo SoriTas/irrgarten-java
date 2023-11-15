@@ -75,7 +75,7 @@ public class Monster {
     */
     public String toString(){
         
-        String cadena = "Name: " + name + ";Intelligence: " + intelligence + ";Strength: " + strength + ";Health: " + health +";Row: " + row + ";Col: " + col;
+        String cadena = "Name: " + name + "; Intelligence: " + intelligence + "; Strength: " + strength + "; Health: " + health +"; Row: " + row + "; Col: " + col + "\n";
         return cadena;
     }
     /*

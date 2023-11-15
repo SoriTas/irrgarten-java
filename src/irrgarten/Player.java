@@ -31,6 +31,7 @@ public class Player {
         name = "Player #" + _number;
         intelligence = _intelligence;
         strength = _strength;
+        health = INITIAL_HEALTH;
         
     }
      /*
@@ -91,7 +92,7 @@ public class Player {
     public Directions move(Directions direction, ArrayList <Directions> validMoves){
         
        int size = validMoves.size();
-       boolean contained = validMoves.equals(direction);
+       boolean contained = validMoves.contains(direction);
        
        if(size > 0 && !contained){
            Directions firstElement = validMoves.get(0);
@@ -142,7 +143,24 @@ public class Player {
     */
     public String toString(){
         
-        String cadena = name + ";Strength: " + strength + ";Intelligence: " + intelligence + ";Health: " + health;
+        String cadena = name + "; Strength: " + strength + "; Intelligence: " + intelligence + "; Health: " + health + "; Weapons: ";
+        
+        for(int i = 0; i < weapons.size(); i++){
+            
+            cadena = cadena + weapons.get(i).toString();
+            
+        }
+        
+        cadena = cadena + "; Shields: ";
+        
+        for(int i = 0; i < shields.size(); i++){
+            
+            cadena = cadena + shields.get(i).toString();
+            
+        }
+        
+        cadena = cadena + "\n";
+        
         return cadena;
     }
      /*
