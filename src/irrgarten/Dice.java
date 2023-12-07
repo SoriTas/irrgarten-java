@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package irrgarten;
-import java.util.Random;
+import java.util.*;
 /**
  *
- * @author manuel
+ * @author sori
  */
 public class Dice {
    static private final int MAX_USES = 5;
@@ -57,9 +57,19 @@ public class Dice {
        return generator.nextFloat() * (competence + 1);
    }
    static public boolean discardElement(int usesLeft){
-    return (generator.nextInt(MAX_USES + 1) > usesLeft);
+       return (generator.nextInt(MAX_USES + 1) > usesLeft);
    }
-  
+   static public Directions nextStep( Directions preference, ArrayList<Directions> validMoves, float intelligence){
+       float randInt = randomIntelligence();
+               
+       if (randInt < intelligence){
+           return preference;
+       }
+       else{
+           int randPos = generator.nextInt(validMoves.size());
+           return validMoves.get(randPos);
+       }
+   }
    
    
 }
