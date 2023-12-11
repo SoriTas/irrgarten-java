@@ -8,31 +8,25 @@ import java.util.*;
 
 /**
  *
- * @author manuel
+ * @author sori
  */
-public class Player {
+public class Player extends LabyrinthCharacter{
     private static final int MAX_WEAPONS = 2;
     private static final int MAX_SHIELDS = 2;
     private static final int INITIAL_HEALTH = 10;
     private static final int HITS2LOSE = 3;
-    private String name;
     private char number;
-    private float intelligence;
-    private float strength;
-    private float health;
-    private int row;
-    private int col;
     private int consecutivesHits = 0;
     private ArrayList<Weapon>weapons= new ArrayList<Weapon>();
     private ArrayList<Shield>shields= new ArrayList<Shield>();
     
     public Player(char _number, float _intelligence, float _strength){
+        super("Player #" +_number, _intelligence, _strength, INITIAL_HEALTH);
         number = _number;
-        name = "Player #" + _number;
-        intelligence = _intelligence;
-        strength = _strength;
-        health = INITIAL_HEALTH;
-        
+    }
+    public Player(Player other){
+        super(other);
+        number = other.number;
     }
      /*
     @brief Empty the weapons and shields arrays set health to the initial value and consecutive hits to 0
@@ -41,25 +35,8 @@ public class Player {
         
         weapons.clear();
         shields.clear();
-        health = INITIAL_HEALTH;
+        setHealth(INITIAL_HEALTH);
         consecutivesHits = 0;
-    }
-     /*
-    @brief Return the row of the Player
-    @return player row
-    */
-    public int getRow(){
-        
-        return row;
-        
-    }
-     /*
-    @brief return the col of the player
-    @return player col
-    */
-    public int getCol(){
-        
-        return col;
     }
      /*
     @brief get the index number of the player
@@ -68,25 +45,6 @@ public class Player {
     public char getNumber(){
         
         return number;
-    }
-     /*
-    @brief set the pos of the player
-    @param _row row of the pos
-    @param _col col of the pos
-    */
-    public void setPos(int _row, int _col){
-        
-        row = _row;
-        col = _col;
-        
-    }
-     /*
-    @brief return true if the player is dead
-    */
-    public boolean dead(){
-        
-        return health <= 0;
-        
     }
     //Preguntar al teacher
     public Directions move(Directions direction, ArrayList <Directions> validMoves){
@@ -108,7 +66,7 @@ public class Player {
     */
     public float attack(){
         
-        return strength + sumWeapons();
+        return getStrength() + sumWeapons();
         
     }
      /*
@@ -132,19 +90,19 @@ public class Player {
         }
         for(int i = 1; i <= wReward; i++){
             Shield snew = this.newShield();
-            this.recieveShields(snew);
+            this.recieveShield(snew);
         }
         int extraHealth = Dice.healthReward();
-        health += extraHealth;
+        setHealth(getHealth()+extraHealth);
         
     }
      /*
     @brief
     */
+    @Override
     public String toString(){
         
-        String cadena = name + "; Strength: " + strength + "; Intelligence: " + intelligence + "; Health: " + health + "; Weapons: ";
-        
+        String cadena = super.toString();
         for(int i = 0; i < weapons.size(); i++){
             
             cadena = cadena + weapons.get(i).toString();
@@ -167,7 +125,7 @@ public class Player {
     @brief Create a new weapon
     @return new weapon object
     */
-    public Weapon newWeapon(){
+    private Weapon newWeapon(){
         Weapon weapon = new Weapon(Dice.weaponPower(),Dice.usesLeft());
         return weapon;
     }
@@ -175,7 +133,7 @@ public class Player {
     @brief Create a new shield
     @return new shield object
     */
-    public Shield newShield(){
+    private Shield newShield(){
         Shield shield = new Shield(Dice.shieldPower(),Dice.usesLeft());
         return shield;
     }
@@ -201,7 +159,7 @@ public class Player {
         }
     }
     //Siguiente Practica
-    private void recieveShields(Shield shield){
+    private void recieveShield(Shield shield){
         
         for(int i = shields.size()-1; i >= 0; i--){
             
@@ -226,7 +184,7 @@ public class Player {
     @brief add the power attack of the weapons in the array
     @return total weapon power
     */
-    private float sumWeapons(){
+    protected float sumWeapons(){
         float suma = 0f;
         for (int i = 0; i < weapons.size();i++){
             suma = suma + weapons.get(i).attack();
@@ -237,7 +195,7 @@ public class Player {
     @brief add the power attack of the shields in the array
     @return total shield power
     */
-    private float sumShields(){
+    protected float sumShields(){
         float suma = 0f;
         for (int i = 0; i < shields.size();i++){
             suma = suma + shields.get(i).protect();
@@ -248,8 +206,8 @@ public class Player {
     @brief Return the total points of intelligence and sumshields
     @return defensive Energy
     */
-    private float defensiveEnergy(){
-        return intelligence + sumShields();
+    protected float defensiveEnergy(){
+        return getIntelligence() + sumShields();
     }
     //Siguiente Practica
     private boolean manageHit(float recievedAttack){
@@ -273,12 +231,6 @@ public class Player {
     */
     private void resetHits(){
          consecutivesHits = 0;
-    }
-    /*
-    @brief decrease the health parameter 
-    */
-    private void gotWounded(){
-        health--;  
     }
     /*
     @brief Increase the consecutiveHits parameter
