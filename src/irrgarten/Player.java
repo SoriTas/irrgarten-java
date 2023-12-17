@@ -20,9 +20,14 @@ public class Player extends LabyrinthCharacter{
     private ArrayList<Weapon>weapons= new ArrayList<Weapon>();
     private ArrayList<Shield>shields= new ArrayList<Shield>();
     
+    private WeaponCardDeck weaponCardDeck;
+    private ShieldCardDeck shieldCardDeck;
+    
     public Player(char _number, float _intelligence, float _strength){
         super("Player #" +_number, _intelligence, _strength, INITIAL_HEALTH);
         number = _number;
+        weaponCardDeck = new WeaponCardDeck();
+        shieldCardDeck = new ShieldCardDeck();
     }
     public Player(Player other){
         super(other);
@@ -103,6 +108,9 @@ public class Player extends LabyrinthCharacter{
     public String toString(){
         
         String cadena = super.toString();
+        
+        cadena = cadena + "; Weapons: ";
+        
         for(int i = 0; i < weapons.size(); i++){
             
             cadena = cadena + weapons.get(i).toString();
@@ -154,7 +162,7 @@ public class Player extends LabyrinthCharacter{
         
         if(size < MAX_SHIELDS){
             
-            weapons.add(weapon);
+            weapons.add(weaponCardDeck.nextCard());
             
         }
     }
@@ -176,7 +184,7 @@ public class Player extends LabyrinthCharacter{
         
         if(size < MAX_SHIELDS){
             
-            shields.add(shield);
+            shields.add(shieldCardDeck.nextCard());
             
         }
     }
